@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <RelativeLayout 
+        android:id="@+id/toprelative"
+    	android:background="@color/loginbtn_blue"
+        android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+        >
+    <TextView
+        android:id="@+id/calendarCenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/normalsize"
+        android:textStyle="bold"
+         />
+
+    <LinearLayout 
+        android:id="@+id/calendarLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="horizontal"
+        android:layout_alignParentLeft="true"
+        >
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/calendar_month_left" />
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:id="@+id/calendarRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="horizontal"
+        android:layout_alignParentRight="true"
+        >
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/calendar_month_right" />
+    </LinearLayout>
+</RelativeLayout>
+    
+    <com.xqtax.views.CalendarView
+        android:id="@+id/calendar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        />
+    
+    <View 
+        android:layout_width="match_parent"
+       	android:layout_height="1px"
+       	android:background="@color/gray2"
+        />
+    
+    <Button 
+        android:id="@+id/button_cancle"
+        android:layout_width="match_parent"
+       	android:layout_height="wrap_content"
+       	android:text="确定"
+       	android:textColor="@color/white"
+       	android:textSize="@dimen/normalsize"
+       	android:padding="10dp"
+       	android:gravity="center"
+       	android:background="@color/loginbtn_blue"
+     />
+
+</LinearLayout>
