@@ -3,7 +3,7 @@ package com.function.activity;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -24,7 +24,7 @@ public class MainActivity extends BaseActivity {
 
 	private ListView listView;
 	private List<String> list = new ArrayList<String>();
-	private Context context = MainActivity.this;
+	private Activity activity = MainActivity.this;
 	private TextView itemText;
 	
 	/**
@@ -38,19 +38,19 @@ public class MainActivity extends BaseActivity {
 			// TODO Auto-generated method stub
 			switch (item) {
 			case 0:
-				startActivity(new Intent(context, AlarmTimerActivity.class));
+				startActivity(new Intent(activity, AlarmTimerActivity.class));
 				break;
 			case 1:
-				startActivity(new Intent(context, VolleyActivity.class));
+				startActivity(new Intent(activity, VolleyActivity.class));
 				break;
 			case 2:
-				startActivity(new Intent(context, XutilsImageActivity.class));
+				startActivity(new Intent(activity, XutilsImageActivity.class));
 				break;
 			case 3:
-				startActivity(new Intent(context, XutilsHttpActivity.class));
+				startActivity(new Intent(activity, XutilsHttpActivity.class));
 				break;
 			case 4:
-				startActivity(new Intent(context, XutilsDbActivity.class));
+				startActivity(new Intent(activity, XutilsDbActivity.class));
 				break;
 
 			default:
@@ -75,7 +75,7 @@ public class MainActivity extends BaseActivity {
 			@Override
 			public View getView(int position, View convertView, ViewGroup parent) {
 				// TODO Auto-generated method stub
-				convertView = LayoutInflater.from(context).inflate(R.layout.item_main, null);
+				convertView = LayoutInflater.from(activity).inflate(R.layout.item_main, null);
 				itemText = (TextView)convertView.findViewById(R.id.itemtext);
 				itemText.setText(list.get(position));
 				return convertView;

@@ -7,22 +7,120 @@ import java.util.Date;
 import java.util.Locale;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 
-@SuppressLint("SimpleDateFormat")
 /**
  * 日期工具
  * @author Administrator
- *
+ * 
+ * HH：24小时制，hh：12小时制
  */
+@SuppressLint("SimpleDateFormat")
 public class MyDateUtil {
 
+	/**
+	 * string转Date
+	 * @param string
+	 * @return
+	 */
+	public static Date string2date(String string){
+		Date date = null;
+		try {
+			date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(string);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		return date;
+	}
+	
+	/**
+	 * Date转string(输出格式：yyyy-MM-dd HH:mm:ss)
+	 * @param string
+	 * @return
+	 */
+	public static String date2string(Date date){
+		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
+	}
+	
+	/**
+	 * 日期字符串格式化为年月日星期(返回格式：2016-04-20 周三)
+	 * @param date
+	 * @return
+	 */
+	public static String time2ymde(String date){
+		return new SimpleDateFormat("yyyy-MM-dd E").format(string2date(date));
+	}
+	
+	/**
+	 * 日期字符串格式化为星期(返回格式：周三)
+	 * @param date
+	 * @return
+	 */
+	public static String time2e(String date){
+		return new SimpleDateFormat("E").format(string2date(date));
+	}
+	
+	/**
+	 * 日期字符串格式化为年月日(返回格式：2016-04-20)
+	 * @param date
+	 * @return
+	 */
+	public static String time2ymd(String date){
+		return new SimpleDateFormat("yyyy-MM-dd").format(string2date(date));
+	}
+	
+	/**
+	 * 日期字符串格式化为年月(返回格式：2016-04)
+	 * @param date
+	 * @return
+	 */
+	public static String time2ym(String date){
+		return new SimpleDateFormat("yyyy-MM").format(string2date(date));
+	}
+	
+	/**
+	 * 日期字符串格式化为年(返回格式：2016)
+	 * @param date
+	 * @return
+	 */
+	public static String time2y(String date){
+		return new SimpleDateFormat("yyyy").format(string2date(date));
+	}
+	
+	/**
+	 * 日期字符串格式化为月(返回格式：4)
+	 * @param date
+	 * @return
+	 */
+	public static String time2m(String date){
+		return new SimpleDateFormat("M").format(string2date(date));
+	}
+	
+	/**
+	 * 时间字符串格式化为年月日时分秒(返回格式：2016-04-20 09:20:00)
+	 * @param date
+	 * @return
+	 */
+	public static String time2ymdhms(String date){
+		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(string2date(date));
+	}
+	
+	/**
+	 * 时间字符串格式化为日期(返回格式：20)
+	 * @param date
+	 * @return
+	 */
+	public static String time2d(String date){
+		return new SimpleDateFormat("d").format(string2date(date));
+	}
+	
 	/** 
-	 * 将时间戳转为代表"距现在多久之前"的字符串 
-	 * @param timeStr   时间戳 
+	 * 将时间字符串转为代表"距现在多久之前"的字符串 
+	 * @param timeStr   时间字符串，格式(yyyy-MM-dd HH:mm:ss)
 	 * @return 
 	 */  
-	public static String getStandardDate(String timeStr, Context context) {  
+	public static String getStandardDate(String timeStr) {  
 	  
 		if (timeStr == null || timeStr.equals("")) {
 			return "";
@@ -74,7 +172,6 @@ public class MyDateUtil {
 	 /**
 	  * 将字符串转为时间戳
 	  * */
-    @SuppressLint("SimpleDateFormat")
 	public static long getStringToDate(String time) {
     	
     	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -89,6 +186,18 @@ public class MyDateUtil {
     }
 	
 	/**
+	 * 获取当前月第一天
+	 * @return
+	 */
+	public static String getMonthFirst(){
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar c = Calendar.getInstance(); 
+		c.add(Calendar.MONTH, 0);
+		c.set(Calendar.DAY_OF_MONTH,1);//设置为1号,当前日期既为本月第一天 
+		return formatter.format(c.getTime());
+	}
+	
+	/**
 	 * 获取当前月最后一天
 	 * @return
 	 */
@@ -98,6 +207,7 @@ public class MyDateUtil {
 		ca.set(Calendar.DAY_OF_MONTH, ca.getActualMaximum(Calendar.DAY_OF_MONTH)); 
 		return formatter.format(ca.getTime());
 	}
+	
 	/**
 	 * 获取相对今天的加减日期
 	 * @return
@@ -109,17 +219,7 @@ public class MyDateUtil {
 		calendar.add(Calendar.DAY_OF_MONTH, day);
 		return formatter.format(calendar.getTime());
 	}
-	/**
-	 * 获取当前月第一天
-	 * @return
-	 */
-	public static String getMonthFirst(){
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		Calendar c = Calendar.getInstance(); 
-		c.add(Calendar.MONTH, 0);
-		c.set(Calendar.DAY_OF_MONTH,1);//设置为1号,当前日期既为本月第一天 
-		return formatter.format(c.getTime());
-	}
+	
 	/**
 	 * 获取今天的日期(yyyy-mm-dd)
 	 * @return
