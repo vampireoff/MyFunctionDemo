@@ -52,6 +52,8 @@ public class Myapplication extends Application {
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		super.onCreate();
+		myapplication = this;
+		
 		// 初始化
 		x.Ext.init(this);
 		// 设置是否输出debug

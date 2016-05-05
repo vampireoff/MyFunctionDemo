@@ -79,8 +79,6 @@ public class MyDataBaseUtil extends SQLiteOpenHelper {
 		db.execSQL(sql);
 		onCreate(db);
 	}
-
-	
 	
 	/**
 	 * ²éÑ¯Êý¾Ý
