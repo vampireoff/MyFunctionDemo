@@ -38,7 +38,7 @@ public class FavorLayout extends RelativeLayout {
 	private Random random = new Random();	//随机数
 	private Drawable pink, green, blue;	//爱心图片
 	private Drawable[] drawables;
-	private Interpolator line = new LinearInterpolator();//线性
+	private Interpolator line = new LinearInterpolator();//线性匀速插值器
 	private Interpolator acc = new AccelerateInterpolator();//加速
 	private Interpolator dec = new DecelerateInterpolator();//减速
 	private Interpolator accdec = new AccelerateDecelerateInterpolator();//先加速后减速
@@ -95,7 +95,6 @@ public class FavorLayout extends RelativeLayout {
 		AnimatorSet set = getEnterAnimat(target); //缩放动画
 		ValueAnimator bezierAnimator = getBezier(target); //贝塞尔曲线动画
 		AnimatorSet finalset = new AnimatorSet();
-		finalset.playSequentially(set);
 		finalset.playSequentially(set, bezierAnimator);
 		finalset.setInterpolator(interpolators[random.nextInt(4)]); //随机变速
 		finalset.setTarget(target);
@@ -181,7 +180,7 @@ public class FavorLayout extends RelativeLayout {
 	/**
 	 * 贝塞尔曲线,起点，终点，途径的点
 	 * @author Administrator
-	 *
+	 * 估值器
 	 */
 	public class Bezier implements TypeEvaluator<PointF>{
 
