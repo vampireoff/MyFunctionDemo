@@ -49,6 +49,7 @@
         </activity>
         
         <activity android:name=".BaseActivity"></activity>
+        <activity android:name=".LoveFlyActivity"></activity>
         <activity android:name=".BigImageActivity"></activity>
         <activity android:name=".XutilsImageActivity"></activity>
         <activity android:name=".AlarmTimerActivity"></activity>

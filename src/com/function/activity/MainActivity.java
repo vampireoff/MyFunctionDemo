@@ -52,6 +52,9 @@ public class MainActivity extends BaseActivity {
 			case 4:
 				startActivity(new Intent(activity, XutilsDbActivity.class));
 				break;
+			case 5:
+				startActivity(new Intent(activity, LoveFlyActivity.class));
+				break;
 
 			default:
 				break;
@@ -70,6 +73,7 @@ public class MainActivity extends BaseActivity {
 		list.add("XutilsImage");
 		list.add("XutilsHttp");
 		list.add("XutilsDB");
+		list.add("µãÔÞ");
 		listView.setAdapter(new BaseAdapter() {
 			
 			@Override

@@ -9,6 +9,7 @@ import android.app.ActivityManager.RunningAppProcessInfo;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -22,6 +23,21 @@ import com.function.config.Common;
  *
  */
 public class MyUtils {
+	
+	/**
+	 * 获取本机号码，需要先在设置里边设置好本机号码才能获取到
+	 * @param context
+	 * @return
+	 */
+	public static String getPhoneNumber(Context context){
+		TelephonyManager manager = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
+		String phone = manager.getLine1Number();
+		if (phone == null || phone.equals("")) {
+			return "0";
+		}else {
+			return phone;
+		}
+	}
 	
 	/**
 	 * 程序是否在前台运行
