@@ -221,6 +221,50 @@ public class MyDateUtil {
 	}
 	
 	/**
+	 * 获取相对某个时间的加减小时
+	 * @return
+	 */
+	public static String getAddMinHour(String time, int num){
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //设置时间格式
+		
+		Calendar calendar = Calendar.getInstance(); //得到日历
+		try {
+			calendar.setTime(sdf.parse(time));	//把当前时间赋给日历
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		calendar.add(Calendar.HOUR_OF_DAY, num);
+
+		return sdf.format(calendar.getTime());
+	}
+	
+	/**
+	 * 计算时间差（小时）
+	 * @return
+	 */
+	public static int getTimeDiff(String t1, String t2){
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		
+		try
+		{
+			Date d1 = df.parse(t1);
+			Date d2 = df.parse(t2);
+			long diff = Math.abs(d1.getTime() - d2.getTime());//这样得到的差值是微秒级别
+			
+			long days = diff / (1000 * 60 * 60 * 24);
+			long hours = (diff-days*(1000 * 60 * 60 * 24))/(1000* 60 * 60);
+//			long minutes = (diff-days*(1000 * 60 * 60 * 24)-hours*(1000* 60 * 60))/(1000* 60);
+			
+			return (int)hours;
+		}
+		catch (Exception e)
+		{
+			return 404;
+		}
+	}
+	
+	/**
 	 * 获取今天的日期(yyyy-mm-dd)
 	 * @return
 	 */
@@ -265,6 +309,29 @@ public class MyDateUtil {
 	@SuppressLint("SimpleDateFormat")
 	public static int comparedate(String date1, String date2){
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar c1 = Calendar.getInstance();
+		Calendar c2 = Calendar.getInstance();
+		try {
+			c1.setTime(formatter.parse(date1));
+			c2.setTime(formatter.parse(date2));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 404;
+		}
+		
+		return c1.compareTo(c2);
+	}
+	
+	/**
+	 * 比较两个时间大小(0:相等, -1:第一个小, 1:第一个大, 404:出错)
+	 * @param date1
+	 * @param date2
+	 * @return
+	 */
+	@SuppressLint("SimpleDateFormat")
+	public static int compareTime(String date1, String date2){
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Calendar c1 = Calendar.getInstance();
 		Calendar c2 = Calendar.getInstance();
 		try {
